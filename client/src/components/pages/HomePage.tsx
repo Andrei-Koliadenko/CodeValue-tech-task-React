@@ -10,9 +10,9 @@ import ProductList from "../page-elements/ProductList";
 const HomePage: FC = () => {
     const [sizes, setSizes] = useState([200, '10%', 'auto']);
     const productList: ProductDto[] = productService.getAllProducts();
-    const currentProduct: ProductDto = productList[0];
+    const [currentProductId, setCurrentProductId] = useState(productList[0].id);
 
-    const paneLayout = {
+    const detailedProductLayout = {
         height: '100%',
         display: 'flex',
         alignItems: 'center',
@@ -31,13 +31,11 @@ const HomePage: FC = () => {
                 onChange={setSizes}
                 sashRender={(index, active) => active}>
                 <Pane minSize={50} maxSize='70%'>
-                    <div style={{...paneLayout, background: '#ddd'}}>
-                        <ProductList products={productList}/>
-                    </div>
+                    <ProductList products={productList} selectedProduct = {setCurrentProductId}/>
                 </Pane>
                 <Pane minSize={50} maxSize='70%'>
-                    <div style={{...paneLayout, background: '#d5d7d9'}}>
-                        <ProductDetails product={currentProduct}/>
+                    <div style={{...detailedProductLayout, background: '#ddd'}}>
+                        <ProductDetails product={productList.find(product => product.id === currentProductId)}/>
                     </div>
                 </Pane>
             </SplitPane>
