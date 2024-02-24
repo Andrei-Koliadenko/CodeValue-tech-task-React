@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import ProductDto from "../../models/ProductDto";
 import {useParams} from "react-router";
-import ProductCard from "../cards/ProductCard";
+import SimpleProductCard from "../cards/SimpleProductCard";
 import {productService} from "../../config/start-up-config";
 
 interface RouteParams {
@@ -21,7 +21,7 @@ const ProductPage: FC = () => {
     )
 
     return <React.Fragment>
-        <ProductCard product={product}/>
+        <SimpleProductCard product={product}/>
     </React.Fragment>
 }
 export default ProductPage

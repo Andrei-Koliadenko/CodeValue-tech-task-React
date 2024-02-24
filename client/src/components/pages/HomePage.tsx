@@ -1,12 +1,16 @@
 import React, {FC, useState} from "react";
 import ProductDto from "../../models/ProductDto";
-import ProductCard from "../cards/ProductCard";
 import SplitPane, {Pane} from 'split-pane-react';
 import 'split-pane-react/esm/themes/default.css';
+import ProductDetails from "../forms/ProductDetails";
+import {productService} from "../../config/start-up-config";
+import ProductList from "../page-elements/ProductList";
 
 
 const HomePage: FC = () => {
     const [sizes, setSizes] = useState([200, '10%', 'auto']);
+    const productList: ProductDto[] = productService.getAllProducts();
+    const currentProduct: ProductDto = productList[0];
 
     const paneLayout = {
         height: '100%',
@@ -28,12 +32,12 @@ const HomePage: FC = () => {
                 sashRender={(index, active) => active}>
                 <Pane minSize={50} maxSize='70%'>
                     <div style={{...paneLayout, background: '#ddd'}}>
-                        pane1
+                        <ProductList products={productList}/>
                     </div>
                 </Pane>
                 <Pane minSize={50} maxSize='70%'>
                     <div style={{...paneLayout, background: '#d5d7d9'}}>
-                        pane2
+                        <ProductDetails product={currentProduct}/>
                     </div>
                 </Pane>
             </SplitPane>

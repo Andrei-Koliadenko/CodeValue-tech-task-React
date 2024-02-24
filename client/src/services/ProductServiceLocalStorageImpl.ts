@@ -28,6 +28,10 @@ export default class ProductServiceLocalStorageImpl implements ProductServiceAbs
         return updatedProduct;
     }
 
+    getAllProducts(): ProductDto[] {
+        return this.getAllProductList();
+    }
+
     private getAllProductList(): ProductDto[] {
         const products: string | null = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (products) {
