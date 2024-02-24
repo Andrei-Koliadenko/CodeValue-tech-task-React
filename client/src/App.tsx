@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Routes} from "react-router-dom";
+import {BrowserRouter, Routes, Navigate} from "react-router-dom";
 import Header from "./components/page-elements/Header";
 import {Route} from "react-router";
 import {PATH_HOME, PATH_PRODUCT} from "./config/links";
@@ -22,6 +22,7 @@ function App() {
                     <Routes>
                         <Route path={PATH_HOME} element={<HomePage/>}/>
                         <Route path={PATH_PRODUCT} element={<ProductPage/>}/>
+                        <Route path='*' element={<Navigate to={PATH_HOME} />} />
                     </Routes>
                 </BrowserRouter>
             </div>
