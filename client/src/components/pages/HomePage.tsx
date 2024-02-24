@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import ProductDto from "../../models/ProductDto";
 import SplitPane, {Pane} from 'split-pane-react';
 import 'split-pane-react/esm/themes/default.css';
@@ -8,9 +8,14 @@ import ProductList from "../page-elements/ProductList";
 
 
 const HomePage: FC = () => {
-    const [sizes, setSizes] = useState([200, '10%', 'auto']);
-    const productList: ProductDto[] = productService.getAllProducts();
+    const [sizes, setSizes] = useState([150, '10%', 'auto']);
+    const [productList, setProductList] = useState(productService.getAllProducts());
     const [currentProductId, setCurrentProductId] = useState(productList[0].id);
+    const [localStorageUpdated, setLocalStorageUpdate] = useState(false);
+
+    useEffect(() => {
+        setProductList(productService.getAllProducts());
+    }, [localStorageUpdated])
 
     const detailedProductLayout = {
         height: '100%',
@@ -31,11 +36,15 @@ const HomePage: FC = () => {
                 onChange={setSizes}
                 sashRender={(index, active) => active}>
                 <Pane minSize={50} maxSize='70%'>
-                    <ProductList products={productList} selectedProduct = {setCurrentProductId}/>
+                    <ProductList products={productList} selectedProduct={setCurrentProductId}/>
                 </Pane>
                 <Pane minSize={50} maxSize='70%'>
                     <div style={{...detailedProductLayout}}>
-                        <ProductDetails product={productList.find(product => product.id === currentProductId)}/>
+                        <ProductDetails
+                            product={productList.find(product => product.id === currentProductId)}
+                            updateProduct={localStorageUpdated}
+                            updateProductSetter={setLocalStorageUpdate}
+                        />
                     </div>
                 </Pane>
             </SplitPane>
