@@ -1,7 +1,6 @@
-import React, {FC, Fragment, useState} from "react";
+import React, {FC, useState} from "react";
 import ProductDto from "../../models/ProductDto";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
