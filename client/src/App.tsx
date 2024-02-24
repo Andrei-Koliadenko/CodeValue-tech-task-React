@@ -6,8 +6,15 @@ import {PATH_HOME, PATH_PRODUCT} from "./config/links";
 import HomePage from "./components/pages/HomePage";
 import ProductPage from "./components/pages/ProductPage";
 import './App.css';
+import {initialProductList} from "./config/start-up-config";
 
 function App() {
+    let initializeProducts = function () {
+        localStorage.setItem("products", JSON.stringify(initialProductList))
+    }
+
+    initializeProducts();
+
     return (<div className={'page-container'}>
             <div className={'content-wrap'}>
                 <BrowserRouter>
