@@ -34,7 +34,7 @@ const HomePage: FC = () => {
                     <ProductList products={productList} selectedProduct = {setCurrentProductId}/>
                 </Pane>
                 <Pane minSize={50} maxSize='70%'>
-                    <div style={{...detailedProductLayout, background: '#ddd'}}>
+                    <div style={{...detailedProductLayout}}>
                         <ProductDetails product={productList.find(product => product.id === currentProductId)}/>
                     </div>
                 </Pane>
