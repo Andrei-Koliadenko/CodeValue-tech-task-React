@@ -1,5 +1,4 @@
 import React, {FC, useEffect, useState} from "react";
-import ProductDto from "../../models/ProductDto";
 import SplitPane, {Pane} from 'split-pane-react';
 import 'split-pane-react/esm/themes/default.css';
 import ProductDetails from "../forms/ProductDetails";
@@ -14,7 +13,11 @@ const HomePage: FC = () => {
     const [localStorageUpdated, setLocalStorageUpdate] = useState(false);
 
     useEffect(() => {
-        setProductList(productService.getAllProducts());
+        const products = productService.getAllProducts()
+        setProductList(products);
+        if (products.find(product => product.id === currentProductId) === undefined) {
+            setCurrentProductId(products[0].id)
+        }
     }, [localStorageUpdated])
 
     const detailedProductLayout = {
@@ -36,7 +39,10 @@ const HomePage: FC = () => {
                 onChange={setSizes}
                 sashRender={(index, active) => active}>
                 <Pane minSize={50} maxSize='70%'>
-                    <ProductList products={productList} selectedProduct={setCurrentProductId}/>
+                    <ProductList products={productList}
+                                 selectedProduct={setCurrentProductId}
+                                 deleteProduct={localStorageUpdated}
+                                 deleteProductSetter={setLocalStorageUpdate}/>
                 </Pane>
                 <Pane minSize={50} maxSize='70%'>
                     <div style={{...detailedProductLayout}}>

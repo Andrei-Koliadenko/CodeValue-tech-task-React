@@ -20,6 +20,13 @@ export default class ProductServiceLocalStorageImpl implements ProductServiceAbs
         return products.find(p => p.id === productId)
     }
 
+    deleteProductById(productId: number): void {
+        const products = this.getAllProductList();
+        const indexToDelete = products.findIndex(p => p.id === productId);
+        products.splice(indexToDelete, 1);
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(products));
+    }
+
     updateProduct(updatedProduct: ProductDto): ProductDto {
         const products = this.getAllProductList();
         const indexToUpdate = products.findIndex(p => p.id === updatedProduct.id);

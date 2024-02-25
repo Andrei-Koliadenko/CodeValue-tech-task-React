@@ -6,4 +6,6 @@ export default interface ProductServiceAbstract {
     updateProduct(updatedProduct: ProductDto): ProductDto;
 
     getProductById(productId: number): ProductDto | undefined;
+
+    deleteProductById(productId: number): void;
 }

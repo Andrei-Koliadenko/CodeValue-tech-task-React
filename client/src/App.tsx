@@ -10,7 +10,9 @@ import {initialProductList} from "./config/start-up-config";
 
 function App() {
     let initializeProducts = function () {
-        localStorage.setItem("products", JSON.stringify(initialProductList))
+        if (localStorage.getItem("products") === null) {
+            localStorage.setItem("products", JSON.stringify(initialProductList))
+        }
     }
 
     initializeProducts();
