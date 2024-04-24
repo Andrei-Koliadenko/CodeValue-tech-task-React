@@ -1,4 +1,4 @@
-Tech task CodeValue - Products App
+Tech task Products App
 
 Products App
 Overview
