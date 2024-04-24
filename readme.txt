@@ -1,8 +1,7 @@
 Tech task Products App
 
-Products App
 Overview
-You are tasked with creating a simple product management app. Each product has the following properties:
+Simple product management app. Each product has the following properties:
 1. ID (number, unique
 2. Name (string, up to 30 characters, mandatory)
 3. Description (string, up to 200 characters, optional)
@@ -14,8 +13,7 @@ The user can view the product list, add new products and edit and delete existin
 The user can also search the product list and sort it in various ways.
 All changes to the list are automatically saved to the browser’s local storage (bonus).
 
-
-Please build the app according to the following steps:
+The app is build according to the following steps:
 1. The product list can be maintained as a simple array in memory and isn’t required to be persisted across page loads.
   a. Initialize the array with a couple of product items as a starting point
   b. There’s a bonus task below that changes this behavior if you get to it
